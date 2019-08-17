@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Movies extends Component {
+class List extends Component {
 
     render() {
         return (
             <>
-            {this.props.movies.map(movie => <li key={movie.title} onClick={this.props.handleMovieClick}>{movie.title}</li>) }
+            {this.props.items.map(item => <li key={item.title} onClick={this.props.handleClick}>{item.title}</li>) }
             </>
         )
     }
 
 }
 
-export default Movies;
+export default List;
