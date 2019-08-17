@@ -36,7 +36,7 @@ class MoviesContainer extends Component {
         )
     }
 
-    handleClick = (event) => {
+    handleMovieClick = (event) => {
         let movie = this.findMovie(event.target.innerHTML);
         this.setState({featuredMovie: movie})
     }
@@ -45,19 +45,30 @@ class MoviesContainer extends Component {
         return (
             <>
             <h1>Ghiblimazing!</h1>
-            <form onSubmit={this.handleSubmit}>
+            {/* <form onSubmit={this.handleSubmit}>
             <input 
                 type="text" 
                 onChange={this.handleChange}
-            />
+            /> */}
+            <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Choose a List 
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
+                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
+                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
+                </Dropdown.Menu> 
+            </Dropdown>
             <button type="submit">Search</button>
             </form>
             <div className="featured">
-                {this.state.featuredMovie ? <Movie film={this.state.featuredMovie}/> : <h4>Search by title to see more...</h4>}
+                {this.state.featuredMovie ? <Movie film={this.state.featuredMovie}/> : <h4>Click a list item to see more...</h4>}
             </div>
             
             <h1>From Studio Ghibli</h1>
-            <Movies handleClick={this.handleClick} movies={this.state.movies}/>
+            <Movies handleMovieClick={this.handleMovieClick} movies={this.state.movies}/>
 
             </>
         )
