@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movies from './Movies';
+import List from './List';
 import Movie from './Movie';
 
 class MoviesContainer extends Component {
@@ -31,12 +31,12 @@ class MoviesContainer extends Component {
         fetch(`https://ghibliapi.herokuapp.com/#${this.state.query}`)
             .then(res => res.json())
             .then((result) => {
-                this.setState({movies: result});
+                this.setState({items: result});
             }   
         )
     }
 
-    handleMovieClick = (event) => {
+    handleClick = (event) => {
         let movie = this.findMovie(event.target.innerHTML);
         this.setState({featuredMovie: movie})
     }
@@ -69,7 +69,7 @@ class MoviesContainer extends Component {
             </div>
             
             <h1>From Studio Ghibli</h1>
-            <List handleMovieClick={this.handleMovieClick} items={this.state.items}/>
+            <List handleClick={this.handleClick} items={this.state.items}/>
 
             </>
         )
