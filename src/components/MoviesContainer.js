@@ -5,8 +5,8 @@ import Movie from './Movie';
 class MoviesContainer extends Component {
 
     state = {
-        movies : [], 
-        query : '',
+        items : [], 
+        query : 'films',
         featuredMovie: null
     }
 
@@ -28,7 +28,7 @@ class MoviesContainer extends Component {
 
     componentDidMount() {
 
-        fetch(`https://ghibliapi.herokuapp.com/films`)
+        fetch(`https://ghibliapi.herokuapp.com/#${this.state.query}`)
             .then(res => res.json())
             .then((result) => {
                 this.setState({movies: result});
@@ -49,26 +49,27 @@ class MoviesContainer extends Component {
             <input 
                 type="text" 
                 onChange={this.handleChange}
-            /> */}
+            />
+            <button type="submit">Search</button>
+            </form> */}
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Choose a List 
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
-                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
-                    <Dropdown.Item href='#'>ListName</Dropdown.Item>
+                    <Dropdown.Item onClick='#'>ListName</Dropdown.Item>
+                    <Dropdown.Item onClick='#'>ListName</Dropdown.Item>
+                    <Dropdown.Item onClick='#'>ListName</Dropdown.Item>
                 </Dropdown.Menu> 
             </Dropdown>
-            <button type="submit">Search</button>
-            </form>
+    
             <div className="featured">
                 {this.state.featuredMovie ? <Movie film={this.state.featuredMovie}/> : <h4>Click a list item to see more...</h4>}
             </div>
             
             <h1>From Studio Ghibli</h1>
-            <Movies handleMovieClick={this.handleMovieClick} movies={this.state.movies}/>
+            <List handleMovieClick={this.handleMovieClick} items={this.state.items}/>
 
             </>
         )
