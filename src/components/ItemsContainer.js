@@ -8,7 +8,6 @@ class ItemsContainer extends Component {
 
     state = {
         items : [], 
-        query : 'films',
         featuredItem: null
     }
 
@@ -26,17 +25,13 @@ class ItemsContainer extends Component {
 
     findItem = (searchTerm) => (this.state.items.find((item) => (item.title.toLowerCase() === searchTerm.toLowerCase())))
 
-    fetchAPI = () => {
-        fetch(`https://ghibliapi.herokuapp.com/${this.state.query}`)
+    fetchAPI = (items) => {
+        fetch(`https://ghibliapi.herokuapp.com/${items}`)
             .then(res => res.json())
             .then((result) => {
                 this.setState({items: result});
             }   
         )
-    }
-
-    componentDidMount() {
-        this.fetchAPI()
     }
 
     handleClick = (event) => {
@@ -45,7 +40,7 @@ class ItemsContainer extends Component {
     }
 
     dropdownClickHandle = (event) => {
-        
+        this.fetchAPI(event.target.textContent)
     }
 
     render() {
@@ -54,14 +49,15 @@ class ItemsContainer extends Component {
             <h1>Ghiblimazing!</h1>
             <h4>Enjoy the world of Studio Ghibli</h4>
           
-            <DropdownMenu dropdownClickHandle={this.dropdownClickHandle()} />
-    
-            <div className="featured">
-                {this.state.featuredItem ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}
-            </div>
+            <DropdownMenu dropdownClickHandle={this.dropdownClickHandle} />
+
+            {this.state.items === null ? (<div className="featured">{this.state.featuredItem ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}</div>) : null}
+            
             
             <h1>From Studio Ghibli</h1>
-            <List handleClick={this.handleClick} items={this.state.items}/>
+            <div id="list-component">
+                <List handleClick={this.handleClick} items={this.state.items}/>
+            </div>
 
             </>
         )
