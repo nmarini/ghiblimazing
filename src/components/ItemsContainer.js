@@ -8,7 +8,7 @@ class ItemsContainer extends Component {
 
     state = {
         items : [], 
-        featuredItem: null
+        featuredItem : ''
     }
 
     // handleChange = (event) => {
@@ -23,7 +23,7 @@ class ItemsContainer extends Component {
         
     // }
 
-    findItem = (searchTerm) => (this.state.items.find((item) => (item.title.toLowerCase() === searchTerm.toLowerCase())))
+    findItem = (searchTerm) => (this.state.items.find((item) => (item.title.toLowerCase() === searchTerm.toLowerCase() || item.name.toLowerCase() === searchTerm.toLowerCase())))
 
     fetchAPI = (items) => {
         fetch(`https://ghibliapi.herokuapp.com/${items}`)
@@ -33,14 +33,18 @@ class ItemsContainer extends Component {
             }   
         )
     }
-
+    
     handleClick = (event) => {
+        event.preventDefault()
+        console.log(event.target.textContent)
         let item = this.findItem(event.target.textContent);
+        // console.log(item)
         this.setState({featuredItem: item})
+        // console.log(this.state.featuredItem)
     }
 
     dropdownClickHandle = (event) => {
-        this.fetchAPI(event.target.textContent)
+        this.fetchAPI(event.target.textContent.toLowerCase())
     }
 
     render() {
@@ -51,7 +55,9 @@ class ItemsContainer extends Component {
           
             <DropdownMenu dropdownClickHandle={this.dropdownClickHandle} />
 
-            {this.state.items === null ? (<div className="featured">{this.state.featuredItem ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}</div>) : null}
+            
+
+            {this.state.featuredItem !== '' ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}
             
             
             <h1>From Studio Ghibli</h1>

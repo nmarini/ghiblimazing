@@ -2,10 +2,10 @@ import React from 'react';
 
 const Item = ({item}) => (
     <>
-        {
-            Object.keys(item).map((attr) => (
-            <p>{attr}: {item.attr}</p>
-            ))
+        {   console.log(item)
+            // Object.keys(item).map((attr) => (
+            // <p>{attr}: {item.attr}</p>
+            // ))
         }
         {/* <h3>Title: <em>{ item.title }</em></h3> 
             <p>Released: <em>{ item.release_date }</em></p>
