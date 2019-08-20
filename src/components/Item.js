@@ -13,7 +13,11 @@ class Item extends Component {
 
                 {this.itemProperties().map((prop, index) => {
                     if (prop[0] !== this.itemTitle()[0] && prop[0] !== 'id') {
-                        return <li key={index}><b>{prop[0].toUpperCase()}</b>: <em>{prop[1]}</em></li> 
+                        if (prop[1].toString().includes("http")) {
+                            return <li key={index}><a href={prop[1]} target="_blank"><b>{prop[0]}</b></a></li>
+                        } else {
+                            return <li key={index}><b>{prop[0].toUpperCase()}</b>: <em>{prop[1]}</em></li> 
+                        }
                     }
                 })}
             </>

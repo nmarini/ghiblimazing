@@ -61,12 +61,12 @@ class ItemsContainer extends Component {
 
             
 
-            {this.state.featuredItem !== '' ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}
+            {this.state.featuredItem !== '' ? <Item handlePropClick={this.handlePropClick} item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}
             
             
             <h1>From Studio Ghibli</h1>
             <div id="list-component">
-                <List handleClick={this.handleClick} items={this.state.items}/>
+                <List items={this.state.items}/>
             </div>
 
             </>
