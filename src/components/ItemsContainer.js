@@ -23,7 +23,15 @@ class ItemsContainer extends Component {
         
     // }
 
-    findItem = (searchTerm) => (this.state.items.find((item) => (item.title.toLowerCase() === searchTerm.toLowerCase() || item.name.toLowerCase() === searchTerm.toLowerCase())))
+    findItem = (searchTerm) => {
+        return this.state.items.find((item) => {
+            if (item.title) {
+                return item.title.toLowerCase() === searchTerm.toLowerCase()
+            } else if (item.name) {
+                return item.name.toLowerCase() === searchTerm.toLowerCase()
+            }
+        })
+    }
 
     fetchAPI = (items) => {
         fetch(`https://ghibliapi.herokuapp.com/${items}`)
