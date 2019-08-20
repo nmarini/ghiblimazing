@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 
 class Item extends Component {
     
-    
+    itemProperties = () => (Object.entries(this.props.item).map((info) => info))
+
+    itemTitle = () => (this.itemProperties().find(prop => prop[0] === 'name' || prop[0] === 'title'))
   
     render() {
         return (
             <>
-            {  console.log(this.props.item)
-                // Object.keys(item).map((attr) => (
-                // <p>{attr}: {item.attr}</p>
-                // ))
-            }
-            {/* <h3>Title: <em>{ item.title }</em></h3> 
-                <p>Released: <em>{ item.release_date }</em></p>
-            <h4>Director: <em>{ item.director }</em></h4>
-            <p>
-                <em>{ item.description }</em>
-            </p> */}
+            <h3>{this.itemTitle()[0].toUpperCase()}: <em>{this.itemTitle()[1]}</em></h3>
 
+                {this.itemProperties().map((prop, index) => {
+                    if (prop[0] !== this.itemTitle()[0] && prop[0] !== 'id') {
+                        return <li key={index}><b>{prop[0].toUpperCase()}</b>: <em>{prop[1]}</em></li> 
+                    }
+                })}
             </>
         )
     }

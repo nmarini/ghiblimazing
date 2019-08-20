@@ -43,12 +43,8 @@ class ItemsContainer extends Component {
     }
     
     handleClick = (event) => {
-        event.preventDefault()
-        console.log(event.target.textContent)
         let item = this.findItem(event.target.textContent);
-        // console.log(item)
         this.setState({featuredItem: item})
-        // console.log(this.state.featuredItem)
     }
 
     dropdownClickHandle = (event) => {
