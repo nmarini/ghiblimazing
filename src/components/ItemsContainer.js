@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import List from './List';
 import Item from './Item';
 import DropdownMenu from './DropdownMenu';
+
  
 
 class ItemsContainer extends Component {
@@ -48,7 +49,9 @@ class ItemsContainer extends Component {
     }
 
     dropdownClickHandle = (event) => {
-        this.fetchAPI(event.target.textContent.toLowerCase())
+        event.preventDefault();
+        let search = event.target.attributes.name.value
+        this.fetchAPI(search)
     }
 
 
@@ -59,8 +62,6 @@ class ItemsContainer extends Component {
             <h4>Enjoy the world of Studio Ghibli</h4>
           
             <DropdownMenu dropdownClickHandle={this.dropdownClickHandle} />
-
-            
 
             {this.state.featuredItem !== '' ? <Item item={this.state.featuredItem}/> : <h4>Click a list item to see more...</h4>}
             

@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class DropdownMenu extends Component {
 
     render() {
         return (
-            <div>
-                <h5>Choose a List</h5>
-
-                <div>
-                    <button onClick={this.props.dropdownClickHandle}>films</button>
-                    <button onClick={this.props.dropdownClickHandle}>people</button>
-                    <button onClick={this.props.dropdownClickHandle}>locations</button>
-                    <button onClick={this.props.dropdownClickHandle}>species</button>
-                    <button onClick={this.props.dropdownClickHandle}>vehicles</button>
-                </div>
-                
-            </div>
+            <DropdownButton id="dropdown-variants-info" title="Choose a List" variant="info" key="info">
+                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="films">Films</Dropdown.Item>
+                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="people">Characters</Dropdown.Item>
+                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="locations">Locations</Dropdown.Item>
+                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="species">Species</Dropdown.Item>
+                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="vehichles">Vehicles</Dropdown.Item>
+            </DropdownButton>
         )
     }
 }
