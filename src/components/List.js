@@ -1,10 +1,10 @@
 import React from 'react';
 
-const List = () => {
+const List = ({items, handleClick}) => {
     
     return (
         <>
-        {this.props.items.map(item => <button className="info" key={item.title || item.name} onClick={this.props.handleClick}>{item.title || item.name}</button>) }
+        {items.map(item => <button className="info" key={item.title || item.name} onClick={handleClick}>{item.title || item.name}</button>) }
         </>
     )
 }
