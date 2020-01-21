@@ -58,7 +58,7 @@ class ItemsContainer extends Component {
     render() {
         return (
             <>
-            <h1>Ghiblimazing!</h1>
+            <h1>Ghibli-mazing!</h1>
             <h4>Enjoy the world of Studio Ghibli</h4>
           
             <DropdownMenu dropdownClickHandle={this.dropdownClickHandle} />
