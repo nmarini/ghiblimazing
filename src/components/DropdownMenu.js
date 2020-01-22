@@ -10,7 +10,6 @@ class DropdownMenu extends Component {
                 <Dropdown.Item onClick={this.props.dropdownClickHandle} name="films">Films</Dropdown.Item>
                 <Dropdown.Item onClick={this.props.dropdownClickHandle} name="people">Characters</Dropdown.Item>
                 <Dropdown.Item onClick={this.props.dropdownClickHandle} name="locations">Locations</Dropdown.Item>
-                <Dropdown.Item onClick={this.props.dropdownClickHandle} name="species">Species</Dropdown.Item>
             </DropdownButton>
         )
     }
