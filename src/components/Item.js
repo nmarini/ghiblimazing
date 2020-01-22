@@ -5,8 +5,13 @@ class Item extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showFilm: false,
             filmTitle: ''
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.item !== prevProps.item) {
+            this.setState({showFilm: false})
         }
     }
     
@@ -18,7 +23,7 @@ class Item extends Component {
         return (
             <>
             <h3>{this.itemTitle()[0].toUpperCase()}: <em>{this.itemTitle()[1]}</em></h3>
-            {this.state.showFilm ? <h4>Film: <em>{this.state.filmTitle}</em></h4> : null}
+            {this.props.item.name ? <h4>Film: <em>{this.state.filmTitle}</em></h4> : null}
                 {this.itemProperties().map((prop, index) => {
                     if (prop[0] !== this.itemTitle()[0] && prop[0] !== 'id') {
                         if (this.props.item.name) {
@@ -26,7 +31,6 @@ class Item extends Component {
                                 fetch(`${prop[1]}`)
                                     .then(res => res.json())
                                     .then((info) => this.setState({
-                                        showFilm: true,
                                         filmTitle: info.title
                                     }))
                             }
